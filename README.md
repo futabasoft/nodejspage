@@ -1,8 +1,7 @@
 # sample nodejsapp
 
 
-
--edit .env
+edit .env
 ```
 HTTP_USER=???
 HTTP_PASS=???
