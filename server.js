@@ -36,7 +36,7 @@ app.post('/upload', multer({ dest: 'public/' }).single('file'), function (req, r
 	const dest = "public/"+path.basename(req.file.originalname);
     const src = req.file.path;
     fs.renameSync(src, dest);
-    var url="https://"+domain+"/"+dest;
+    var url="https://"+domain+".glitch.me/"+dest;
     res.send('uploaded '+url);
   });
 var server = http.createServer(app);
