@@ -32,12 +32,5 @@ app.use("/", express.static("public"));
 var server = http.createServer(app);
 
 
-/*http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
-}).listen(port);*/
-console.log(process.env);
-console.log("port=" + port);
-console.log("user=" + user);
-console.log("pass=" + pass);
+
 server.listen(port);
