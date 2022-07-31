@@ -13,6 +13,33 @@ const domain = process.env.PROJECT_DOMAIN;
 //glitch PROJECT_DOMAIN
 // Create an Express app
 var app = express();
+var settings = {
+  httpAdminRoot: "/",
+  httpNodeRoot: "/api/",
+  uiPort: 3000,
+  functionGlobalContext: {    // enables global context
+    // os:require('os'),
+  },
+  adminAuth: {
+    type: "credentials",
+    users: [{  //node -e "console.log(require('bcryptjs').hashSync(process.argv[1], 8));"
+      username: process.env.NODE_RED_USER,
+      password: process.env.NODE_RED_PW,
+      permissions: "*"
+    }]
+  },
+  debugMaxLength: 1000,
+  debugUseColors: true,
+  flowFile: 'flows.json',
+  userDir: __dirname+'/node-red',
+  nodesDir:__dirname+'/node-red/nodes',
+  ui: { path: "ui" },
+  logging: {
+    console: {
+      level: "trace"
+    }
+  }
+};
 
 var authfunc = (req, res, next) => {
     const credentials = auth(req);
@@ -40,6 +67,16 @@ app.post('/upload', multer({ dest: 'public/' }).single('file'), function (req, r
     res.send('uploaded '+url);
   });
 var server = http.createServer(app);
+// Initialise the runtime with a server and settings
+RED.init(server, settings);
+
+// Serve the editor UI from /
+app.use(settings.httpAdminRoot, RED.httpAdmin);
+
+// Serve the http nodes UI from /
+app.use(settings.httpNodeRoot, RED.httpNode);
+
+RED.start();
 
 server.listen(port);
 
