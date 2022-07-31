@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const auth = require('basic-auth');
 const multer = require('multer');
+const RED = require("node-red");
 
 const port = process.env.PORT || 3000;
 const user = process.env.HTTP_USER;
@@ -14,7 +15,7 @@ const domain = process.env.PROJECT_DOMAIN;
 // Create an Express app
 var app = express();
 var settings = {
-  httpAdminRoot: "/",
+  httpAdminRoot: "/red/",
   httpNodeRoot: "/api/",
   uiPort: 3000,
   functionGlobalContext: {    // enables global context
@@ -57,7 +58,7 @@ var authfunc = (req, res, next) => {
     })
     res.end();
 };
-app.use('/',authfunc);
+app.use('/api/ui',authfunc);
 app.use("/", express.static("public"));
 app.post('/upload', multer({ dest: 'public/' }).single('file'), function (req, res, next) {
 	const dest = "public/"+path.basename(req.file.originalname);
