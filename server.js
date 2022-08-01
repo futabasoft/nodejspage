@@ -77,7 +77,6 @@ app.use(settings.httpAdminRoot, RED.httpAdmin);
 // Serve the http nodes UI from /
 app.use(settings.httpNodeRoot, RED.httpNode);
 
-RED.start();
-
 server.listen(port);
 
+RED.start();
