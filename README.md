@@ -38,7 +38,4 @@ var settings = {
 
 ## 4 
 
-[nodered](/red/)
 
-
-[nodered dashboard](/ui/)
