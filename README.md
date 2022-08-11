@@ -11,14 +11,14 @@
 $ *node -e "console.log(require('bcryptjs').hashSync(process.argv[1], 8));" password*
 
 ``` terminal
-ex.  password **1234**
-$ *node -e "console.log(require('bcryptjs').hashSync(process.argv[1], 8));" 1234*
+ex.  password 1234
+$ node -e "console.log(require('bcryptjs').hashSync(process.argv[1], 8));" 1234
 
 $2a$08$1wSxdx/hfTQcesKJrfgBOODXJJboPwt2Ax/O6nYzMAvpqFOWRQqvi
 ```
 ## 3 edit .env file
 
-glitch env $  escape
+glitch env $  escape \
 ```
 HTTP_USER=user
 HTTP_PASS=?			//plain text
