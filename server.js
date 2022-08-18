@@ -6,7 +6,7 @@ const path = require('path');
 const auth = require('basic-auth');
 const multer = require('multer');
 const RED = require("node-red");
-const bcrypt = reqyure('bcrypt');
+const bcrypt = require('bcrypt');
 
 const port = process.env.PORT || 3000;
 const user = process.env.HTTP_USER;
