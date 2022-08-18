@@ -21,7 +21,7 @@ $2a$08$1wSxdx/hfTQcesKJrfgBOODXJJboPwt2Ax/O6nYzMAvpqFOWRQqvi
 glitch env $  escape \
 ```
 HTTP_USER=user
-HTTP_PASS=?			//plain text
+HTTP_PASS=?			//hash
 
 NODE_RED_USER=admin
 NODE_RED_PW=?	   //hash 

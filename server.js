@@ -6,10 +6,11 @@ const path = require('path');
 const auth = require('basic-auth');
 const multer = require('multer');
 const RED = require("node-red");
+const bcrypt = reqyure('bcrypt');
 
 const port = process.env.PORT || 3000;
 const user = process.env.HTTP_USER;
-const pass = process.env.HTTP_PASS;
+const hash = process.env.HTTP_PASS;
 const domain = process.env.PROJECT_DOMAIN;
 //glitch PROJECT_DOMAIN
 // Create an Express app
@@ -46,8 +47,7 @@ var authfunc = (req, res, next) => {
     const credentials = auth(req);
     if (credentials) {
         const { name, pass } = credentials
-
-        if (name ===user && pass === pass) {
+        if (name ===user && bcrypt.compareSync(pass, hash)) {
             next();
             return;
         }
